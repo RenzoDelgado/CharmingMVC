@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "Pagos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+}
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<link href="~/Css/CssPay.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+<div class="cont-left">
+
+    <div class="partearriba">
+        <p class="title">REALIZAR PEDIDO</p>
+
+        <p class="sub-title">Metodo de pago</p>
+        <hr />
+    </div>
+
+    <div class="contenido">
+        <img src="~/Imagen/Icons/visa.png" alt="" class="imgvisa" />
+        <p class="tituloCard">Visa, Mastercard, American Express</p>
+        <div>
+            <input id="Condiciones" type="checkbox" />
+            <p class="chekitem">Estoy de acuerdo con los Terminos y Condiciones de la empresa</p>
+        </div>
+
+        <p class="titucard">Tarjeta de Credito Segura</p>
+        <hr />
+        <div class="tarjeta-credito">
+            <div class="datoscard">
+                <p class="tit-dato">Numero de tarjeta de credito:</p>
+                <p class="tit-sub">Su tarjeta de credito contiene 16 digitos.</p>
+                <input id="Tarjeta" type="text" class="textcard" maxlength="16" placeholder="1234XXXXXXXXX567" />
+            </div>
+
+
+            <div class="datoscvv">
+                <p class="tit-datos">Codigo de seguridad:</p>
+                <p class="tit-subs">Son 3 o 4 digitos al reverso de su tarjeta.</p>
+                <input id="CVV" type="password" class="cvv" maxlength="3" placeholder="455" />
+
+
+
+                <p class="tit-dato-fech">Fecha de expiracion:</p>
+                <p class="tit-sub-fech">Fecha de caducidad de su tarjeta.</p>
+                <input id="Fecha" type="month" class="fech" placeholder="06/2030" />
+            </div>
+
+        </div>
+        <input id="btnPagar" type="submit" value="PAGAR" class="buttoncomprar" />
+        <div class="paypa">
+            <img src="~/Imagen/Icons/paypal.png" alt="" class="imgpaypal" />
+            <p class="tituloCards">Paypal</p>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+@*<div class="parte-laterall">
+        <p>RESUMEN DEL PEDIDO</p>
+        <hr />
+        <p>Sub total  </p>  <p>S/ 265.00 </p>
+        <p>Envio - Monto  </p>  <p>S/ 10.00 </p>
+        <p>Total del Pedido  </p>  <p>S/ 265.00 </p>
+
+        <p>Articulos en el carrito</p>
+        <hr />
+        <div class="items-right">
+            <div class="editorim">
+                <div class="imgclass">
+                    <img src="~/Imagen/Productos/polerahblancrosa.jpg" />
+
+                </div>
+            </div>
+
+            <p class="labels">Nombre del producto</p>
+            <p class="labels">Cantidad: #</p>
+            <p class="labelsp">S/ Precio</p>
+            <hr class="hrasr" />
+        </div>
+
+        <p>ENVIAR A</p>
+        <hr />
+        <p>Entregar a:  </p>
+        <p>Direccion:  </p>
+        <p>Distrito:  </p>
+        <p>Telefono:  </p>
+
+        <p>METODO DE ENVIO</p>
+        <hr />
+        <img src="~/Imagen/Icons/entrega-rapida.png" alt="" />    <p>ENVIO - DELIVERY</p>
+    </div>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btnPagar").click(function () {
+
+            var numTarjeta = $("#Tarjeta").text();
+
+
+            if ($("#Condiciones").is(":checked")) {
+
+                var tarjeta = $("#Tarjeta").val();
+                var codigo = $("#CVV").val();
+                var fecha = $("#Fecha").val();
+
+                if (tarjeta == "" || codigo == "" || fecha == "") {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Por favor completar los datos de la tarjeta',
+                        text: 'Ya casi acabas con la compra! te falto solo un paso.',
+                        showConfirmButton: true,
+
+                    })
+                } else {
+                    Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Tu compra se a relizado con éxito',
+                    text: '¡MUCHAS GRACIAS VUELVA PRONTO!',
+                    showConfirmButton: false,
+                    timer: 2000
+                    })
+
+                var tipo = localStorage.getItem("tipo");
+                var subtotal;
+
+                if (tipo == 1) {
+                    var nombre;
+                    var apellido;
+                    var direccion;
+                    var referencia;
+                    var telefono;
+                    var distritos;
+
+                    if (typeof localStorage != "undefined") {
+
+                        nombre = localStorage.getItem("nombreEnvio");
+                        apellido = localStorage.getItem("apellidoEnvio");
+                        direccion = localStorage.getItem("direccionEnvio");
+                        referencia = localStorage.getItem("referenciaEnvio");
+                        telefono = localStorage.getItem("telefonoEnvio");
+                        distritos = localStorage.getItem("distritosEnvio");
+                        tipo = localStorage.getItem("tipo");
+                        subtotal = localStorage.getItem("subtotal");
+
+                        var url = "@Url.Action("RealizarTransaccion", "Pay")";
+                        datos = { "nombre": nombre, "apellido": apellido, "direccion": direccion, "referencia": referencia, "telefono": telefono, "distritos": distritos, "tipo": tipo, "subtotal": subtotal };
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: datos,
+                            success: function () { }
+                        });
+                    }
+                }
+                if (tipo == 0) {
+                    var nombre;
+                    var apellido;
+                    var dni;
+                    var telefono;
+                    var fecha;
+                    var tipo;
+                    var subtotal;
+
+                    if (typeof localStorage != "undefined") {
+                        nombre = localStorage.getItem("nombreRecoger");
+                        apellido = localStorage.getItem("apellidoRecoger");
+                        dni = localStorage.getItem("dniRecoger");
+                        telefono = localStorage.getItem("telefonoRecoger");
+                        fecha = localStorage.getItem("fechaRecoger");
+                        tipo = localStorage.getItem("tipo");
+                        subtotal = localStorage.getItem("subtotal");
+
+                        var url = "@Url.Action("RealizarTransaccion", "Pay")";
+                        datos = { "nombre": nombre, "apellido": apellido, "dni": dni, "telefono": telefono, "fecha": fecha, "tipo": tipo, "subtotal":subtotal };
+
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: datos,
+                            success: function () { }
+                        });
+                      }}
+
+
+                }
+            }
+            else {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Debes aceptar los terminos y condiciones primero',
+                    text: 'Ya casi acabas con la compra! te falto solo un paso.',
+                    showConfirmButton: true,
+                })
+            }
+        });
+
+
+        $('#Tarjeta').on('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+
+    });
+</script>
+
+

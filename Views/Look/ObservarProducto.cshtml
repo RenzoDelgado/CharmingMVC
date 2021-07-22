@@ -1,0 +1,342 @@
+﻿
+@{
+    ViewBag.Title = "ObservarProducto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+}
+
+@{
+
+    MVC_Charming.Models.Producto objProducto = ViewBag.producto;
+}
+
+@{
+    List<MVC_Charming.Models.Producto> listax = ViewBag.Loquequiera;
+
+    int cont = 0;
+
+    var UsuarioLogueado = Session["Usuario"];
+    List<int> listaCarrito = new List<int>();
+}
+
+
+<link href="~/Css/CssLook.css" rel="stylesheet" />
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+<div id="content">
+
+
+    <div id="container-info">
+        <div class="infos">
+
+            <p class="title-prodcut">@objProducto.NombreProducto</p>
+            <p id="stock" class="Info-item">Stock: Consultar por tallas</p><i id="stockImg" style="position: absolute; top: 54px;margin-left: 125px;font-size:15px; color:green;" class=""></i>
+            <p class="price">S/ @objProducto.Precio</p>
+            <p class="Info-item">Elige tu talla:</p>
+
+            <div class="btn-group btn-group-lg" role="group" aria-label="Montserrat" style="padding-right: 160px;padding-bottom: 20px;height: 68px;width: 352px;">
+
+                <button id="btn1" type="button" class="btn btn-outline-dark" style="font-size: 20px;">S</button>
+                <button id="btn2" type="button" class="btn btn-outline-dark" style="font-size: 20px;">M</button>
+                <button id="btn3" type="button" class="btn btn-outline-dark" style="font-size: 20px;">L</button>
+                <button id="btn4" type="button" class="btn btn-outline-dark" style="font-size: 20px;">XL</button>
+
+            </div>
+
+            <p class="Info-item-cant">Cantidad:</p>
+            <input id="cantidad" type="number" value="1" class="cantida" pattern="^[0-9]+" />
+
+            <a id="btnTalla" href="#" class="consult"><i class="fas fa-ruler-horizontal" style="padding-right: 10px;"></i>Cual es mi talla?</a>
+
+            <button id="btnAgregarCarrito" type="submit" class="add"><i class="fas fa-cart-plus" style="margin-right: 10px;"></i>AÑADIR AL CARRITO</button>
+
+
+
+
+
+        </div>
+
+        <div id="carouselExampleFade" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="~/Imagen/Productos/@objProducto.ImagenProducto" class="d-block w-100" alt="" />
+                </div>
+                <div class="carousel-item">
+                    <img src="~/Imagen/Productos/@objProducto.ImagenProducto" class="d-block w-100" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="partlateral">
+            <p>Mas Productos</p>
+            <hr class="" />
+
+            @foreach (var producto in listax)
+            {
+                cont++;
+
+            <article class="productInfo">
+
+                <div class="editor-item">
+
+                    <a href="@Url.Action("ObservarProducto","Look", new { CODPROD=producto.CodProduct} )">
+                        <img src="~/Imagen/Productos/@producto.ImagenProducto" alt="" />
+                    </a>
+                    <a href="@Url.Action("ObservarProducto","Look", new { CODPROD=producto.CodProduct} )" class="bag-add"><i class="fas fa-shopping-bag"></i></a>
+                    <a href="VisuaProduct.aspx" class="visua"><i class="far fa-eye"></i></a>
+
+                </div>
+            </article>
+                if (cont == 4)
+                {
+                    break;
+                }
+            }
+
+
+
+        </div>
+
+
+
+
+
+        <div class="ac-container agileits websystemayouts">
+            <div>
+                <input id="ac-4" name="accordion-1" type="checkbox" />
+                <label for="ac-4" class="grid1"><i></i>Detalles</label>
+                <article class="ac-small agileits ">
+                    <p>
+                        @objProducto.Descripcion
+
+                    </p>
+                </article>
+            </div>
+            <div>
+                <input id="ac-5" name="accordion-1" type="checkbox" />
+                <label for="ac-5" class="grid2"><i></i>Descripcion</label>
+                <article class="ac-small agileits websystemayouts">
+                    <p>
+                        Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
+                        texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
+                        de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, co
+                        mo por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos,
+                        quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuale
+                        s contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual i
+                        ncluye versiones de Lorem Ipsum.
+
+                    </p>
+                </article>
+            </div>
+            <div>
+                <input id="ac-6" name="accordion-1" type="checkbox" />
+                <label for="ac-6" class="grid3"><i></i>Mas informacion</label>
+                <article class="ac-small agileits websystemayouts">
+                    <p>
+                        Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el
+                        texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro
+                        de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, co
+                        mo por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos,
+                        quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuale
+                        s contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual i
+                        ncluye versiones de Lorem Ipsum.
+
+                    </p>
+                </article>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var idtalla = "";
+
+        $("#btnAgregarCarrito").click(function () {
+
+            var usuarioLogueado = "@UsuarioLogueado";
+            
+            if (usuarioLogueado == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario no logeado :(',
+                    text: 'Debes iniciar sesion para poder agregar productos al carrito.!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+                return false;
+            }
+            else if (usuarioLogueado != "")
+            {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Has agregado: @objProducto.NombreProducto al carrito',
+                    text: '¡Gracias :D!',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }
+
+            if (idtalla == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Agrega un talla:(',
+                    text: 'Es necesario que ingreses una talla!',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+                return false;
+            }
+
+            var tallaText = $("#stock").text()
+            if (tallaText == "Stock: No Disponible") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'El producto no esta en stock :(',
+                    text: 'El producto con la talla elegida no esta disponible',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+                return false;
+            }
+
+            var cantidad = $("#cantidad").val();
+            var url = "@Url.Action("AgregarCarrito", "Cart")";
+            datos = { "idproducto": "@objProducto.IDProducto", "cantidad": cantidad ,"idtalla": idtalla };
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: datos,
+                success: function (data) {
+                    if (!data) {
+                        Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Ya has agregado: @objProducto.NombreProducto al carrito',
+                        text: 'No puedes repetir productos',
+                        showConfirmButton: true,
+
+                        })
+                    }
+                }
+
+            });
+
+            return false;
+        });
+
+        $("#btn1").click(function () {
+            idtalla = "1";
+            buscarTallaStock(idtalla);
+        });
+
+        $("#btn2").click(function () {
+            idtalla = "2";
+            buscarTallaStock(idtalla);
+        });
+
+        $("#btn3").click(function () {
+            idtalla = "3";
+            buscarTallaStock(idtalla);
+        });
+
+        $("#btn4").click(function () {
+            idtalla = "4";
+            buscarTallaStock(idtalla);
+        });
+
+        var buscarTallaStock = function (idtalla){
+            var url = "@Url.Action("BuscarTallaStock", "Look")";
+            datos = { "idtalla": idtalla, "idproducto": "@objProducto.IDProducto" };
+            var id = "@objProducto.IDProducto";
+
+
+            console.log(idtalla +"-----"+ id);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: datos,
+                success: function (data) {
+
+                    if (data == 0) {
+                        console.log("data = " + data);
+                $("#stock").text("Stock: No Disponible");
+                        var nodispo = $("#stock").text();
+                        if (nodispo == "Stock: No Disponible") {
+                            $("#stockImg").css("Color", "Red");
+
+                        }
+
+                    }
+                    if (data > 0) {
+                        console.log("data = " + data);
+                        $("#stock").text("Stock: Disponible");
+                        var dispo = $("#stock").text();
+                        if (dispo == "Stock: No Disponible") {
+
+                        }
+
+
+
+                    }
+                }
+            });
+        }
+
+        
+
+
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#btnTalla").click(function () {
+
+            Swal.fire({
+                title: 'Guia de tallas',
+                text: 'Elegir correctamente su talla deseada.',
+                imageUrl: '/Imagen/InfoTallas/Tallas.png',
+                width: 1020,
+                imageWidth: 952,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+            })
+        });
+    });
+</script>
+
+<script src="~/Scripts/SweetAlert.js"></script>

@@ -1,0 +1,244 @@
+﻿@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-SemiBold';
+    src: url('../fonts/Montserrat-SemiBold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Montserrat-Light';
+    src: url('../fonts/Montserrat-Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('../fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+.title {
+    font-family: Montserrat-Regular;
+    font-size: 25px;
+    margin-bottom: 45px;
+}
+
+.sub-title {
+    font-family: Montserrat-SemiBold;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+.cont-left {
+    width: 800px;
+    margin-top: 45px;
+    margin-left: 150px;
+}
+.imgvisa {
+    position: absolute;
+    top: 305px;
+}
+
+.tituloCard {
+    font-size: 18px;
+    margin-top:30px;
+    margin-left:50px;
+}
+
+.chekitem {
+    margin-top: 40px;
+    margin-left: 70px;
+    font-size:15px;
+    font-family: Montserrat-Light;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    -webkit-appearance: none;
+    background-color: #DDDCDC;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+
+input:checked[type="checkbox"] {
+    background-color: #8EEE6D;
+}
+
+input[type="checkbox"]:before {
+    content: ' ';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    top: 0px;
+    left: 0px;
+    background-color: white;
+    transform: scale(1.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+    transition: .5s;
+}
+
+input:checked[type="checkbox"]:before {
+    left: 20px;
+}
+
+input[type="checkbox"]:focus, input[type="checkbox"]:active {
+    outline: none;
+}
+.titucard {
+    font-family: Montserrat-SemiBold;
+    font-size: 20px;
+    margin-top: 45px;
+    margin-left: 20px;
+}
+
+.tarjeta-credito {
+    background-color: #D6D6D6;
+    position: relative;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 550px;
+    height: 270px;
+}
+
+    .tarjeta-credito:after {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        background: #000000;
+        background: -webkit-linear-gradient(to right, #434343, #000000);
+        background: linear-gradient(to right, #434343, #000000);
+        filter: blur(10px);
+        z-index: -1;
+    }
+
+.tit-dato {
+    padding-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+    font-family: Montserrat-Medium;
+    font-size: 16px;
+}
+.tit-datos {
+    padding-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 0px;
+    font-family: Montserrat-Medium;
+    font-size: 16px;
+    position: absolute;
+}
+.tit-dato-fech {
+    padding-top: 10px;
+    margin-left: 350px;
+    margin-bottom: 0px;
+    font-family: Montserrat-Medium;
+    font-size: 16px;
+    position: absolute;
+    top: 145px;
+}
+
+.tit-sub {
+    font-size: 9px;
+    font-family: Montserrat-Light;
+    margin-left: 25px;
+}
+.tit-subs {
+    font-size: 9px;
+    font-family: Montserrat-Light;
+    margin-left: 25px;
+    position: absolute;
+    margin-top: 45px;
+}
+.tit-sub-fech {
+    font-size: 9px;
+    font-family: Montserrat-Light;
+    margin-left: 355px;
+    position: absolute;
+    top: 178px;
+}
+
+.textcard {
+    font-family: Montserrat-Light;
+    font-size: 17px;
+    border: 0px;
+    padding-left:10px;
+    margin-left: 25px;
+    width: 270px;
+    margin-right: 700px;
+}
+    .textcard:focus, .textcard:active {
+        outline: none;
+    }
+
+.cvv {
+    font-family: Montserrat-Light;
+    font-size: 17px;
+    border: 0px;
+    padding-left: 10px;
+    margin-left: 25px;
+    margin-top: 65px;
+    width: 60px;
+}
+    .cvv:focus, .cvv:active {
+        outline: none;
+    }
+
+.fech {
+    font-family: Montserrat-Light;
+    font-size: 17px;
+    border: 0px;
+    margin-bottom: 30px;
+    margin-left: 265px;
+    padding-left: 10px;
+    width: 100px;
+}
+    .fech:focus, .fech:active {
+        outline: none;
+    }
+
+.datoscvv{
+    margin-top:20px;
+}
+.datoscard {
+    padding-top: 30px;
+}
+
+.buttoncomprar {
+    color: white;
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+    background-color: #989898;
+    font-family: Montserrat-Medium;
+    margin-left: 600px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 40px;
+    width: 170px;
+}
+    .buttoncomprar:focus, .buttoncomprar:active {
+        outline: none;
+    }
+
+    .buttoncomprar:hover {
+        background-color: #B9B9B9;
+        color: #3E3E3E;
+        transform: scale(1.1);
+    }
+.imgpaypal {
+        position: absolute;
+    left: 150px;
+    top: 920px;
+}
+
+.tituloCards {
+    font-size: 18px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+}

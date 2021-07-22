@@ -1,0 +1,270 @@
+﻿@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+
+    List<MVC_Charming.Models.Producto> listaProductos = ViewBag.ListaProductos;
+    int idComponent = 0;
+
+    Dictionary<int, int[]> listaCarrito = new Dictionary<int, int[]>();
+    listaCarrito = (Dictionary<int, int[]>)Session["ListaCarrito"];
+
+    int tamanoDictionary = listaCarrito.Count;
+
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<link href="~/Css/CssShoppingCart.css" rel="stylesheet" />
+
+
+
+
+
+<div id="container">
+    <div class="container-title">
+        <h1>Carrito de compras</h1>
+        <hr />
+    </div>
+
+
+    <div class="lateral">
+        <p class="lateral-title">RESUMEN</p>
+        <hr />
+        <p class="estima-title">Estimacion de envio</p>
+        <p class="subt">Subtotal</p>
+        <p class="lateralsoles">S/</p>
+        <p id="sumasubtotal" class="labellateral-subtotal"></p>
+
+        <p class="montenvio">Envio-Monto</p>
+        <p class="lateralsoles-envio">S/</p>
+        <p id="montoEnvio" class="labelmontodeliv">00.00</p>
+
+        <p class="totalpedid">Total del Pedido</p>
+        <p class="lateralsoles-totalpedido">S/</p>
+        <p id="totalTodo" class="labeltotalpedido"> 00.00  </p>
+
+    </div>
+
+
+
+    <div id="container-product">
+        <div class="container-product-title">
+            <a class="article-title">Articulo</a>
+            <a class="subtitle">Precio</a>
+            <a class="subtitle">Cantidad</a>
+            <a class="subtitle">Subtotal</a>
+            <hr class="hrarriba" />
+        </div>
+
+
+
+        @foreach (var producto in listaProductos)
+        {
+            idComponent++;
+            <div class="row-product">
+                <div class="editorim">
+                    <div class="imgclass">
+                        <img src="~/Imagen/Productos/@producto.ImagenProducto" />
+                    </div>
+                </div>
+
+                <div class="row-products-items">
+                    <p style="display: none">@producto.IDProducto</p>
+                    <p class="nomproduct">
+                        @producto.NombreProducto
+                    </p>
+                    <p class="Soles">
+                        S/
+                    </p>
+                    <p id="Precio_@idComponent" class="row-product-price">
+                        @producto.Precio
+                    </p>
+
+                    <input id="cantidad_@idComponent" type="number" class="tex" value="@listaCarrito[producto.IDProducto][0]" name="cantidad" pattern="^[0-9]+" />
+
+                    <p class="Solessub">S/ </p>
+
+                    <p id="resultado_@idComponent" class="row-product-subtotal"> </p>
+
+
+
+                </div>
+                <div class="row-footer">
+                    <hr class="hrbotonarriba" />
+                    <input id="@listaCarrito.ElementAt(idComponent-1).Key" type="button" value="Quitar articulo" class="buttonquitar" />
+                    <hr class="hrbotonabajo" />
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
+
+
+<div class="container-checkbox">
+
+
+
+    <input type="checkbox" id="delivery" name="">
+    <p class="chekitem">Delivery</p>
+
+    <input type="checkbox" id="recoger" name="">
+    <p class="chekitem">Recogo en tienda</p>
+
+    <button id="btnComprar" class="buttoncomprar">Continuar</button>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var resumenCalculo = function () {
+            var totalTodo = 0;
+            var subtotal = $("#sumasubtotal").text();
+            var montoEnvio = $("#montoEnvio").text();
+
+            totalTodo = (parseFloat(montoEnvio) + parseFloat(subtotal));
+            $("#totalTodo").text(totalTodo);
+        }
+        var deliveryEvent = function () {
+            var totalTodo = 0;
+            $("#delivery").prop("checked", true);
+            $("#recoger").prop("checked", false);
+            vistaRedireccionar = "/Delivery/Envio";
+
+            $("#montoEnvio").text("10.00");
+            resumenCalculo();
+
+        }
+        var recogerEvent = function () {
+            $("#recoger").prop("checked", true);
+            $("#delivery").prop("checked", false);
+            vistaRedireccionar = "/PickUp/Recoger";
+            $("#montoEnvio").text("0.00");
+
+            resumenCalculo();
+        }
+
+        var idComponent = "@idComponent";
+        var Sumtotal = 0;
+        var vistaRedireccionar = null;
+
+        for (var i = 1; i <= idComponent; i++) {
+            var precio = $("#Precio_".concat(i)).text();
+            var cant = $("#cantidad_".concat(i)).val();
+            var result = precio * cant;
+
+
+            $("#resultado_".concat(i)).text(result);
+
+        }
+
+        for (var i = 1; i <= idComponent; i++) {
+
+            var Subtotal = $("#resultado_".concat(i)).text();
+            Sumtotal = (parseFloat(Subtotal) + parseFloat(Sumtotal));
+        }
+
+        $("#sumasubtotal").text(Sumtotal);
+
+        deliveryEvent();
+
+        $("#delivery").click(function () {
+            deliveryEvent();
+        });
+
+        $("#recoger").click(function () {
+            recogerEvent();
+        });
+
+
+        $("#btnComprar").click(function () {
+            var tamanoDictionary = "@tamanoDictionary";
+            var subtotal;
+            var totalTodo;
+            if (tamanoDictionary != 0) {
+                if (typeof localStorage != "undefined") {
+                    subtotal = $("#sumasubtotal").text();
+                    
+                    localStorage.setItem("subtotal", subtotal);
+                }
+
+                console.log(subtotal);
+  
+                $(location).attr('href', vistaRedireccionar);
+            } else {
+                 Swal.fire({
+                    icon: 'error',
+                    title: 'Debes agregar productos al carrito :(',
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                })
+
+            }
+
+        });
+
+        
+
+        $(document).on('change', 'input[type="number"]', function (event) {
+            var Sumtotal2 = 0;
+            var cantidad = $(this).val();     
+
+            for (var i = 1; i <= idComponent; i++) {
+                var precio = $("#Precio_".concat(i)).text();
+                var cant = $("#cantidad_".concat(i)).val();
+
+                var result = precio * cant;
+
+                $("#resultado_".concat(i)).text(result);
+            }
+
+            var url = "@Url.Action("ModificarCantidad", "Cart")";
+
+            for (var i = 1; i <= idComponent; i++) {
+
+                var Subtotal = $("#resultado_".concat(i)).text();
+                Sumtotal2 = (parseFloat(Subtotal) + parseFloat(Sumtotal2));
+            }
+
+            $("#sumasubtotal").text(Sumtotal2);
+
+            resumenCalculo();
+        });
+
+    });
+
+    
+
+    $(function () {
+        $(document).on('click', 'input[type="button"]', function (event) {
+            let id = this.id;
+            var url = "@Url.Action("EliminarProducto", "Cart")";
+            datos = { "idproducto": id};
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: datos,
+                success: function () {
+                    location.reload();
+                }
+
+            });
+
+            return false;
+        });
+    });
+
+
+
+</script>

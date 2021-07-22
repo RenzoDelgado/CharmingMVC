@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "Recoger";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+    List<MVC_Charming.Models.Producto> listaResumen = ViewBag.listaResumen;
+    int usuario = Convert.ToInt32(Session["Usuario"]);
+    Dictionary<int, int[]> listaCarrito = (Dictionary<int, int[]>)Session["ListaCarrito"];
+
+}
+
+<link href="~/Css/CssPickUp.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<div id="container">
+    <form action="@Url.Action("Pagos","Pay")" method="post">
+        <div class="cont-left">
+            <div class="title-left">
+                <p class="title">REALIZAR PEDIDO</p>
+                <p class="sub-title">Recogo de pedido</p>
+                <hr />
+                <div class="container-checkbox">
+                    <input id="check1" type="checkbox" />
+                    <p class="chekitem">Yo mismo recogere el producto</p>
+                    <input id="check2" type="checkbox" />
+                    <p class="chekitem">Otra persona recogera el producto</p>
+                </div>
+                <hr />
+            </div>
+
+            <div class="cont-info">
+                <p class="cont-info-item">Nombre</p>
+                <input id="Nombre" type="text" class="textboxs" placeholder="Ej: Renzo" name="Nombre" />
+
+                <p class="cont-info-item">Apellido</p>
+                <input id="Apellido" type="text" class="textboxs" placeholder="Ej: Delgado" name="Apellido" />
+
+
+                <p class="cont-info-item">DNI</p>
+                <input id="DNI" type="number" class="textboxs" placeholder="Ej: 01435567" name="DNI" />
+
+
+                <p class="cont-info-item">Telefono</p>
+                <input id="Telefono" type="number" class="textboxs" placeholder="Ej: 953837473" name="Telefono" />
+
+
+                <p class="cont-info-item">Fecha de recogo</p>
+                <input id="Fecha" type="date" class="textboxs" name="Fecha" />
+
+
+            </div>
+
+            <div class="cont-foot">
+                <p class="modoenvio">Modo de envio</p>
+                <a href="NotFound.aspx" class="politcasempre">Ver politicas de envio de la empresa</a>
+                <hr />
+                <i class="fas fa-boxes"></i> <p class="pricedelivery">S/ 00.00</p>
+                <p class="monttext">Recogo en tienda</p>
+            </div>
+            <input id="btnContinuar" type="submit" value="Continuar" class="buttonContinuar" />
+
+        </div>
+    </form>
+
+
+
+    <div class="part-right">
+        <p  id="btnResumen" class="title-right">RESUMEN<i class="fas fa-chevron-down" style="margin-left: 10px;"></i></p>
+        <hr />
+
+            <div id="ContResumen" class="menurs">
+                @foreach (var producto in listaResumen)
+                {
+                    <div class="items-right">
+                        <div class="editorim">
+                            <div class="imgclass">
+                                <img src="~/Imagen/Productos/@producto.ImagenProducto" />
+
+                            </div>
+                        </div>
+
+                        <p class="labels">@producto.NombreProducto</p>
+                        <p class="labels">Cantidad:  @listaCarrito[producto.IDProducto][0] </p>
+                        <p class="labelsp">S/@producto.Precio</p>
+                        <hr class="hrasr" />
+                    </div>
+                }
+            </div>
+
+    </div>
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var nombre;
+        var apellido;
+        var dni;
+        var telefono;
+        var fecha;
+        var tipo;
+
+
+
+
+        var check1Event = function () {
+            $("#check1").prop("checked", true);
+
+            var url = "@Url.Action("TraerUsuarioDatos", "PickUp")";
+            datos = { "idUsuario": "@usuario" };
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: datos,
+                success: function (data) {
+                    $("#Nombre").val(data.nombre);
+                    $("#Apellido").val(data.apellido);
+                    $("#DNI").val(data.dni);
+                    $("#Telefono").val(data.telefono);
+                }
+
+            });
+
+            $("#check2").prop("checked", false);
+        };
+
+        var check2Event = function () {
+            $("#check2").prop("checked", true);
+            $("#Nombre").val("");
+            $("#Apellido").val("");
+            $("#DNI").val("");
+            $("#Telefono").val("");
+            $("#check1").prop("checked", false);
+        };
+
+        check1Event();
+
+        $("#check1").click(function () {
+            check1Event();
+        });
+        $("#check2").click(function () {
+            check2Event();
+        });
+
+
+
+
+
+
+
+
+        $("#btnContinuar").click(function () {
+
+            if (typeof localStorage != "undefined") {
+
+                nombre = $("#Nombre").val();
+                apellido = $("#Apellido").val();
+                dni = $("#DNI").val();
+                telefono = $("#Telefono").val();
+                fecha = $("#Fecha").val();
+                tipo = "0";
+
+                localStorage.setItem("nombreRecoger", nombre);
+                localStorage.setItem("apellidoRecoger", apellido);
+                localStorage.setItem("dniRecoger", dni);
+                localStorage.setItem("telefonoRecoger", telefono);
+                localStorage.setItem("fechaRecoger", fecha);
+                localStorage.setItem("tipo", tipo);
+            }
+
+        });
+
+    });
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#ContResumen").show("slow");
+
+            $("#btnResumen").click(function () {
+
+                $("#ContResumen").toggleClass("visualizar");
+
+
+                return false;
+            });
+
+        });
+
+
+    </script>

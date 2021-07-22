@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+}
+
+@{ 
+    List<MVC_Charming.Models.Distrito> lista = ViewBag.ListaDist;
+}
+
+<link href="~/Css/CssRegister.css" rel="stylesheet" />
+
+
+<div id="contenido">
+
+    <div class="Title">
+        <h1>REGISTRO</h1>
+    </div>
+
+   
+
+
+
+    <div id="Container-Login">
+        <p class="container-titulo"> Completa tus datos personales</p>
+        <hr class="hrarriba" />
+        <form action="@Url.Action("Login","Login")" method="post">
+            <p class="texto">Nombre:  </p>
+            <input id="Text1" type="text" placeholder="Ej: Renzo" class="TextBoxs" name="Nombre" />
+
+
+            <p class="texto" style="margin-top: 0px;">Apellidos:: </p>
+            <input id="Text1" type="text" placeholder="Ej: Delgado Lopez" class="TextBoxs" style="margin-top: 0px;" name="Apellido" />
+
+
+            <p class="texto" style="margin-top: 0px;">Fecha de nacimineto: </p>
+            <input id="Text1" type="date" placeholder="Ej: DD/MM/AAAA..." class="TextBoxs" style="margin-top: 0px;" name="Fecha" />
+
+
+            <p class="texto" style="margin-top: 0px;">DNI: </p>
+            <input id="Text1" type="number" placeholder="Ej: 74310043" class="TextBoxs" style="margin-top: 0px;" name="DNI" />
+
+
+            <p class="texto" style="margin-top: 0px;">Direccion: </p>
+            <input id="Text1" type="text" placeholder="Ej: Av. Siempre viva 742" class="TextBoxs" style="margin-top: 0px;" name="Direccion" />
+
+
+            <p class="texto" style="margin-top: 0px;">Distrito: </p>
+
+            <select id="Select1" class="TextBoxs" style="margin-top: 0px;" name="Distrito">
+                <option disabled selected>Elegir un Distrito</option>
+                @foreach (var dist in lista)
+                {
+                    <option value="@dist.idDistrito">
+                        @dist.Distritos
+                    </option>
+                }
+
+
+            </select>
+
+            <p class="texto" style="margin-top: 0px;">Numero telf: </p>
+            <input id="Text1" type="number" placeholder="Ej: 950445423" class="TextBoxs" style="margin-top: 0px;" name="Celular" />
+
+
+            <p class="texto" style="margin-top: 0px;">Correo electronico: </p>
+            <input id="Text1" type="text" placeholder="Ej: Charming@exclusive.pe" class="TextBoxs" style="margin-top: 0px;" name="Correo" />
+
+
+            <p class="texto" style="margin-top: 0px;">Contrasena: </p>
+            <input id="Text1" type="password" placeholder="Ej: XjsCmmS93?/+" class="TextBoxs" style="margin-top: 0px;" name="Contrasena" />
+
+
+            <p class="texto" style="margin-top: 0px;">Repetir contrasena: </p>
+            <input id="Text1" type="password" placeholder="Ej: XjsCmmS93?/+" class="TextBoxs" style="margin-top: 0px;" name="ContrasenaRepit" />
+
+            <input id="Button1" type="submit" value="Registrate" class="botonlogin" />
+        </form>
+    </div>
+
+</div>

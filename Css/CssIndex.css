@@ -1,0 +1,467 @@
+﻿@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Light';
+    src: url('../fonts/Montserrat-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('../fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+
+
+
+#carouselExampleFade {
+    margin-top: 30px;
+    width: 97%;
+    margin-left: 7px;
+}
+
+#content {
+    clear: both;
+    overflow: auto;
+    padding-top: 29px;
+    height: 100%;
+}
+
+.sidebar {
+    color: rgba(146,146,146,1.00);
+    float: left;
+    width: 65%;
+    margin-left: 20%;
+    padding-left: 3%;
+    padding-right: 3%;
+    text-align: center;
+    background-color: rgba(246,246,246,1.00);
+    padding-top: 36px;
+    height: 90%;
+}
+#menubar .menuxss h2 {
+    font-size: 14px;
+    font-family: Montserrat-Medium;
+}
+ .mainContent {
+    float: left;
+    width: 70%;
+    text-align: center;
+    padding-left: 4%;
+    margin-top: 0px;
+}
+
+.ofertas20 {
+    font-family: 'Book Antiqua', sans-serif;
+    text-align: left;
+    font-size: 24px;
+    height: 70px;
+    width: 450px;
+    margin-top: 7%;
+    margin-bottom: 20px;
+}
+
+#content .sidebar #menubar {
+    text-align: left;
+    color: rgba(146,146,146,1.00);
+    position: relative;
+    left: 0%;
+}
+
+#content .sidebar #txtbuscar {
+    font-family: Montserrat-Light;
+    width: 100%;
+    border: 1px solid;
+    border-color: rgba(208,207,207,1.00);
+    border-radius: 2px;
+    height: 42px;
+    text-align: center;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 21px;
+}
+
+#txtbuscar:focus, #txtbuscar:active {
+    outline: none;
+}
+
+
+.buttonfiltro {
+    color: rgba(146,146,146,1.00);
+    font-family: Montserrat-Light;
+    font-size: 15px;
+    padding-left: 0px;
+    text-decoration:none;
+}
+
+
+    .buttonfiltro:hover {
+        color: #404040;
+        text-decoration: none;
+    }
+
+
+.menuxss ul li {
+    font-family: Montserrat-Regular;
+    list-style-type: none;
+    font-size: x-large;
+    position: relative;
+    left: -35px;
+    padding-top: 12px;
+    margin-left: 15px;
+}
+
+.sidebar #menubar .menuxss ul li a:hover {
+    color: rgba(107,97,97,1.00);
+    text-decoration: none;
+}
+
+.sidebar #menubar .menuxss {
+    margin-bottom: 29px;
+}
+
+
+
+#menubar .menuxss ul li a {
+    font-family: Montserrat-Regular;
+    font-size: 13px;
+}
+/* Product rows for catalog */
+
+/* Each product Information in the catalog */
+.mainContent  .productInfo {
+    float: left;
+    padding-left: 0%;
+    position: relative;
+    padding-right: 0%;
+    width: 240px;
+}
+/* Prices of a products in catalog */
+.productInfo .price {
+    font-family: Montserrat-Regular;
+    color: rgba(146,146,146,1.00);
+    font-size: 22px;
+    position: relative;
+    top: -20px;
+    padding-top: 25px;
+}
+/* Content holder for products in catalog*/
+ .productInfo .productContent {
+    position: relative;
+    top: -37px;
+    font-size: 14px;
+    font-family: Montserrat-Regular;
+    font-style: normal;
+    font-weight: 200;
+    color: rgba(146,146,146,1.00);
+    white-space: pre-wrap;
+}
+/* Buy button for products in catalog */
+.buyButton {
+    position: relative;
+    top: -48px;
+    width: 74%;
+    background-color: rgba(208,207,207,1.00);
+    height: 35px;
+    color: rgba(255,255,255,1.00);
+    border-style: none;
+    font-size: 14px;
+
+    margin-top: 8px;
+    border-radius: 2px;
+
+}
+    .buyButton:focus, .buyButton:active {
+        outline: none;
+    }
+
+ .productInfo .buyButton:hover {
+        background-color: #4B1111;
+        color: rgba(255,255,255,1.00);
+        transform:scale(1.1);
+    }
+
+.productInfo div .productImg {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    object-fit: cover;
+    display: inline-block;
+}
+
+.productImg:focus, .productImg:active {
+    outline: none;
+}
+
+.editor-item {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    width: 166px;
+}
+
+    .editor-item .eye {
+        padding-left: 10px;
+        color: black;
+        position: absolute;
+        padding-right: 20px;
+        bottom: 250px;
+        margin-left: 60px;
+        text-decoration: none;
+        transition: all 0.65s;
+        width: 29%;
+        height: 20%;
+        left: 0px;
+        visibility: hidden;
+        background: #0F2027; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        border-radius: 100px;
+    }
+
+    .editor-item i {
+        padding-top: 9px;
+        font-size: 25px;
+    }
+
+
+
+    .editor-item:hover .eye {
+        color: white;
+        visibility: visible;
+        bottom: 1em;
+        right: 4em;
+    }
+
+    .editor-item:hover .imgcla {
+        filter: blur(2px);
+    }
+
+
+
+/*Estilos para tablets*/
+@media screen and (min-width:768px) {
+
+
+    .sidebar {
+        width: 35%;
+        height: 12%;
+        margin-left: 1%;
+    }
+
+    #content {
+        width: 785px;
+    }
+
+        #content .mainContent {
+        /*    width: 60%;*/
+            padding-left: 0px;
+/*            margin-left: 10px;*/
+        }
+
+            #content .mainContent .productRow {
+                margin-left: 0px;
+                width: 480px;
+                height: 380px;
+            }
+
+    .mainContent .productRow .productInfo {
+        width: 153.3438px;
+        height: 330px;
+    }
+
+}
+
+
+.modaltest {
+    /*    background-color:red;*/
+    /*    top: 0;
+    left: 0;*/
+    /*    transition: all 500ms ease;*/
+    /* display: flex; */
+    /* align-items: center; */
+    width: 500px;
+    margin-left: 680px;
+    /* position: fixed; */
+    /* top: 20px; */
+/*    opacity: 0;
+    visibility: hidden;*/
+}
+.esconder{
+    display:none;
+}
+.modalOcultar {
+    /*    display: flex;*/
+    /*    position: fixed;*/
+    /*    top: 0;
+    left: 0;
+    background-color: red;
+    transition: all 500ms ease;*/
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1s;
+}
+
+/*#btn-modal:checked ~ .modal {
+    opacity: 1;
+    visibility: visible;
+}
+*/
+.contenedor {
+    width: 400px;
+    height: 300px;
+/*    margin: auto;*/
+    background-color:red;
+/*    box-shadow: 1px 7px 25px rgba(0,0,0,0.6);*/
+/*    transition: all 500ms ease;*/
+    position: relative;
+/*    transform: translateY(-30%);*/
+}
+
+/*#btn-modal:checked ~ .modal .contenedor {
+    transform: translateY(0%);
+}*/
+
+.contenedor header {
+    padding: 10px;
+    background: #db8046;
+    color: #fff;
+}
+
+.contenedor label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.contenido {
+    width: 100%;
+    padding: 10px;
+}
+
+    .contenido h3 {
+        margin-bottom: 10px;
+    }
+
+    .contenido p {
+        margin-bottom: 7px;
+    }
+
+#btn-modal {
+    display: none;
+}
+
+.lbl-modal {
+    background-color:red;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+@media only screen and (min-width:320px) and (max-width:768px) {
+    .contenedor {
+        width: 95%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Estilos para web*/
+@media screen and (min-width:1024px) {
+
+
+    #carouselExampleFade {
+        width: 87%;
+        margin-left: 95px;
+    }
+
+    #content {
+        margin-left: 14%;
+        width: 1100px;
+    }
+
+    .sidebar {
+        margin-left: 0%;
+        width: 25%;
+    }
+
+    .mainContent {
+        width: 66%;
+    /*    height: 1000px;*/
+        margin-left: 4%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .toti {
+        height: 40px;
+    }
+
+    .ofertas20 {
+        margin-top: 0;
+        text-align: unset;
+        width: 700px;
+        font-size: 33px;
+    }
+
+    #content .mainContent .productRow {
+        width: 100%;
+        margin-right: 0px;
+        margin-top: 20px;
+        height: auto;
+        display:flex;
+        flex-direction: row;
+        flex-wrap:wrap;
+    }
+
+    .mainContent .productRow .productInfo {
+        width: 33%;
+    }
+
+    .editor-item .visua {
+        text-decoration: none;
+        padding-left: 10px;
+        color: dimgrey;
+        position: absolute;
+        padding-right: 10px;
+        bottom: 250px;
+        right: 4em;
+        transition: all 0.50s;
+        width: 100px;
+        left: 35px;
+        margin-bottom: 22px;
+
+    }
+
+    .visual:hover .visua {
+        color: #CDCDCD;
+        bottom: 2em;
+        right: 4em;
+    }
+
+
+
+
+}

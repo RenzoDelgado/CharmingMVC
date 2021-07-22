@@ -1,0 +1,287 @@
+﻿@font-face {
+    font-family: 'Montserrat-Light';
+    src: url('../fonts/Montserrat-Light.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('../fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+
+
+
+#contenido {
+    width: 100%;
+    height: 800px;
+}
+
+.Title {
+    font-family: Montserrat-Light;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#Container-Login {
+    /*
+    width: 800px;
+    height: 650px;
+    margin-top: 10px;
+    margin-left: 21%;
+    background-color: #CFCDCE;
+    border-radius: 10px;
+    position: relative;
+    */
+    width: 445px;
+    height: 650px;
+    margin-top: 10px;
+    margin-left: 4%;
+    background-color: #CFCDCE;
+    border-radius: 10px;
+    position: relative;
+}
+
+
+    #Container-Login:after {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        background: #000000;
+        background: -webkit-linear-gradient(to right, #434343, #000000);
+        background: linear-gradient(to right, #434343, #000000);
+        filter: blur(20px);
+        z-index: -1;
+    }
+
+
+.container-titulo {
+    font-family: Montserrat-Light;
+    font-size: 25px;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 5px;
+}
+
+#Container-Login .hrarriba {
+    margin-top: 0px;
+    margin-left: 20px;
+    color: black;
+    width: 400px;
+    border-top: 1px solid #868686;
+}
+
+#Container-Login .hrabajo {
+    margin-bottom: 10px;
+    margin-left: 20px;
+    color: black;
+    width: 400px;
+    border-top: 1px solid #868686;
+}
+
+.inf {
+    text-align: center;
+    font-family: Montserrat-Light;
+    font-size: 13px;
+}
+
+.texto {
+    position: absolute;
+    /*margin-left: 130px; pagweb*/
+    margin-left: 25px;
+    margin-top: 30px;
+    width: 150px;
+    font-family: Montserrat-Light;
+}
+
+
+.TextBoxs {
+    width: 220px;
+    border: none;
+    border-radius: 4px;
+    padding-left: 20px;
+    margin-top: 30px;
+    height: 33px;
+    margin-bottom: 25px;
+    font-family: Montserrat-Light;
+    margin-left: 200px;
+}
+
+    .TextBoxs:focus, .TextBoxs:active {
+        outline: none;
+    }
+
+.botonlogin {
+    color: white;
+    font-size: 17px;
+    border: none;
+    background-color: #989898;
+    font-family: Montserrat-Medium;
+    margin-left: 145px;
+    /* margin-left: 200px;  ---- pc */
+    margin-top: 10px;
+    margin-bottom: 50px;
+    height: 40px;
+    width: 150px;
+}
+
+    .botonlogin:focus, .botonlogin:active {
+        outline: none;
+    }
+
+    .botonlogin:hover {
+        background-color: #B9B9B9;
+        color: #3E3E3E;
+        transform: scale(1.1);
+    }
+
+.botonlogins {
+    color: white;
+    font-size: 17px;
+    border: none;
+    background-color: #989898;
+    font-family: Montserrat-Medium;
+    margin-left: 145px;
+    /* border:1px solid;*/
+    /*margin-left: 350px;*/
+    margin-top: 20px;
+    position: absolute;
+    text-decoration: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 3px;
+    /*    height: 40px;
+    width: 150px;*/
+}
+
+    .botonlogins:focus, .botonlogins:active {
+        outline: none;
+    }
+
+    .botonlogins:hover {
+        background-color: #B9B9B9;
+        color: #3E3E3E;
+        transform: scale(1.1);
+        text-decoration: none;
+    }
+
+#Container-Login a {
+    color: black;
+    font-size: 15px;
+    font-family: Montserrat-Light;
+    text-decoration: none;
+    margin-left: 140px;
+}
+
+    #Container-Login a:hover {
+        color: #3E3E3E;
+    }
+
+.container-titulos {
+    font-family: Montserrat-Light;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.infoabajo {
+    font-family: Montserrat-Light;
+    font-size: 13px;
+    margin-left: 20px;
+    width: 400px;
+    /* margin-left: 100px;
+    width: 600px;*/
+    text-align: center;
+}
+
+
+/*ESTILOS TABLET*/
+
+@media screen and (min-width:768px) {
+
+    #Container-Login {
+        width: 670px;
+        margin-left: 7%;
+    }
+
+        #Container-Login .hrarriba {
+            width: 625px;
+        }
+
+        #Container-Login .hrabajo {
+            width: 625px;
+        }
+
+    .TextBoxs {
+        width: 300px;
+        margin-left: 275px;
+    }
+
+    .texto {
+        margin-left: 80px;
+        margin-top: 35px;
+        width: 150px;
+    }
+
+    .botonlogin {
+        margin-left: 260px;
+    }
+
+    #Container-Login a {
+        margin-left: 40px;
+    }
+
+    .infoabajo {
+        margin-left: 35px;
+        width: 600px;
+    }
+
+    .botonlogins {
+        margin-left: 260px;
+    }
+}
+
+/*ESTILOS PC*/
+
+@media screen and (min-width:1024px) {
+
+    #Container-Login {
+        width: 800px;
+        margin-left: 21%;
+    }
+
+    .texto {
+        margin-left: 130px;
+    }
+
+    .TextBoxs {
+        margin-left: 300px;
+    }
+
+    .botonlogin {
+        margin-left: 330px;
+    }
+
+    .botonlogins {
+        margin-left: 330px;
+    }
+
+    #Container-Login .hrarriba {
+        margin-left: 30px;
+        width: 740px;
+    }
+
+    #Container-Login .hrabajo {
+        margin-left: 30px;
+        width: 740px;
+    }
+
+    .infoabajo {
+        margin-left: 100px;
+    }
+}

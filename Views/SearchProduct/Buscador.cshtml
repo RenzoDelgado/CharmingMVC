@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Buscador";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+}
+
+@{
+    List<MVC_Charming.Models.Producto> lista = ViewBag.Filtros;
+}
+@{
+    List<MVC_Charming.Models.Categoria> ListaCate = ViewBag.ListaCat;
+}
+@{
+    List<MVC_Charming.Models.Tallas> ListTalla = ViewBag.ListaTalla;
+}
+
+<link href="~/Css/CssSearchProduct.css" rel="stylesheet" />
+
+
+<div id="content">
+    <div class="content-header">
+        <p class="title-cont-header">
+            Buscador de productos
+        </p>
+
+
+        <hr />
+        <form action="@Url.Action("Buscador","SearchProduct")" method="post">
+            <div class="buscador">
+                <p class="alb">
+                    Filtrar por:
+
+                </p>
+
+
+                <select id="Select1" class="combo" name="cboCate">
+                    <option disabled selected>Elegir una Categoria</option>
+                    @foreach (var item in ListaCate)
+                    {
+
+                        <option value="@item.idCategoria">
+                            @item.Cate
+                        </option>
+
+
+                    }
+
+
+                </select>
+
+
+                <select id="Select2" class="combo2" name="cboTalla">
+                    <option disabled selected>Elegir una Talla</option>
+                    @foreach (var talla in ListTalla)
+                    {
+                        <option value="@talla.idtalla">
+                            @talla.talla
+                        </option>
+                    }
+
+
+                </select>
+
+
+
+                <select id="Select3" class="combo2" name="cboPrecio">
+                    <option value="0">
+                        PRECIO MAS BAJO
+                    </option>
+                    <option value="1">
+                        PRECIO MAS ALTO
+                    </option>
+
+                </select>
+
+                <button type="submit" class="buttonfiltrar"><i class="fas fa-broom" style="margin-right:10px;"></i>Filtro</button>
+
+
+
+            </div>
+        </form>
+        <hr />
+    </div>
+
+
+
+
+
+
+
+    <div class="productRow">
+
+        @foreach (var prod in lista)
+        {
+
+
+            <article class="productInfo">
+                <div class="editor-item">
+                    <div class="imgcla">
+                        <a href="@Url.Action("ObservarProducto","Look", new { CODPROD=prod.CodProduct})">
+                            <img src="~/Imagen/Productos/@prod.ImagenProducto" class="productImg" />
+                        </a>
+
+                    </div>
+                    <div class="visual">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="eye"> <i class="far fa-eye"></i></a>
+                    </div>
+                </div>
+                <p class="price"> S/ @prod.Precio</p>
+
+                <p class="productContent">@prod.NombreProducto</p>
+                <button type="submit" class="buyButton"><i class="fas fa-cart-plus" style="margin-right:10px;"></i>COMPRAR</button>
+            </article>
+
+        }
+    </div>
+
+
+</div>
+
+
+
+<nav class="paginacion">
+    <ul class="pagination justify-content-center" style="margin-top: 0px; margin-left: 500px;">
+        <li class="page-item disabled">
+            <a class="page-initial" href="#" tabindex="-1" aria-disabled="true" style="height: 36px;">Previous</a>
+        </li>
+        <li class="page-item"><a class="itm" href="#">1</a></li>
+        <li class="page-item"><a class="itm" href="#">2</a></li>
+        <li class="page-item"><a class="itm" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-initial" href="#" style="height: 36px;">Next</a>
+        </li>
+    </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+

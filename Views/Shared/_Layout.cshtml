@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Charming</title>
+    <link href="~/Css/CssHandF.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    @{ 
+        var UsuarioLogeado = Session["Usuario"];
+    }
+</head>
+
+<body>
+
+        <header>
+            <div class="cabecera">
+                <div id="headerLinks">
+
+
+                    @{
+                        if (UsuarioLogeado == null)
+                        {
+                            <a href="~/Login/Login" class="LR">Iniciar Sesion/Registrar </a>
+                        }
+
+                        else if (UsuarioLogeado != null)
+                        {
+                            MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+
+                            @*<a href="~/User/UsersSection" class="LR">USUARIO</a>*@
+                            <a href="~/User/UsersSection" class="LR">Bienvenido, @usu.NombreU !</a>
+                        }
+                    }
+
+                    <a href="~/Cart/ShoppingCart" class="Cart"><i id="cr" class="fas fa-shopping-cart"></i>Carrito</a>
+
+                </div>
+
+                <a href="~/Home/Index" >
+                    <p id="logo">Charming</p>
+                </a>
+
+                <div class="box">
+                    <div class="container-3">
+                        <span class="icon"><i class="fa fa-search"></i></span>
+                        <input id="search"  placeholder="Buscar..." type="text" />
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="menus">
+
+                <div id="iconos">
+                    <div class="redes-social">
+                        <a href="@Url.Action("WarningFatalError","Error404")" class="ico-red"><i class="fab fa-facebook-square"></i></a>
+                        <a href="@Url.Action("WarningFatalError","Error404")"><i class="fab fa-instagram"></i></a>
+                        <a href="@Url.Action("WarningFatalError","Error404")"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+
+                <div id="container-items">
+                    <div class="items">
+                        <a  class="item" id="btnmenu"><i class="icon-menu fas fa-bars"></i>Categoria </a>
+
+
+                        <ul class="menu" id="menu">
+                            
+                            <li class="menu-itemg">  <a  href="@Url.Action("Buscador","SearchProduct", new { CATEGORIAS=1} )" class="menu_link">Poleras</a></li>
+                            <li class="menu-itemg">  <a  href="@Url.Action("Buscador","SearchProduct", new { CATEGORIAS=2} )" class="menu_link" >Polos</a></li>
+                            <li class="menu-itemg">  <a  href="@Url.Action("Buscador","SearchProduct", new { CATEGORIAS=3} )" class="menu_link" >Camisas</a></li>
+                            <li class="menu-itemg">  <a  href="@Url.Action("Buscador","SearchProduct", new { CATEGORIAS=4} )" class="menu_link" >Casacas</a></li>
+                            <li class="menu-itemg">  <a  href="@Url.Action("Buscador","SearchProduct", new { CATEGORIAS=5} )"class="menu_link" >Blusas</a></li>
+                        </ul>
+
+                        <a href="/Home/Index"  class="item" >Inicio</a>
+                        <a href="@Url.Action("WarningFatalError","Error404")" class="item"  >De temporada</a>
+                        <a href="@Url.Action("Buscador","SearchProduct", new { GENERO="H"} )" class="item"  >Hombre</a>
+                        <a href="@Url.Action("Buscador","SearchProduct", new { GENERO="M"} )"  class="item"  >Mujer</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+
+
+
+        <div class="body-contenss">
+            @RenderBody()
+
+
+        </div>
+
+
+
+
+
+
+        <footer>
+            <div class="AtentionClient">
+                <h4>Atencion al cliente</h4>
+                <img   align="left" Style="margin-top: 5px;"   src="~/Imagen/Icons/llamada-telefonica.jpg" />
+                <p style="margin-left: 25px;">Servicio al Cliente: 960423431/993974836</p>
+
+   
+                <img   align="left" Style="margin-top: 5px;"   src="~/Imagen/Icons/whatsapp.png" />
+                <p style="margin-left: 25px;">Contacto WhatsApp: 960-423-431/993-974-986</p>
+
+
+                <img  align="left" Style="margin-top: 5px;"  src="~/Imagen/Icons/horario.png"  />
+                <p style="margin-left: 25px;">Lunes a Viernes: 9:30hrs - 20:00 hrs.</p>
+
+
+                <img  align="left" Style="margin-top: 5px;"  src="~/Imagen/Icons/correo-electronico.png" />
+                <p style="margin-left: 25px;">Atencionalcliente@charming.com.pe</p>
+
+            </div>
+
+            <div class="Informa">
+                <h4>Información</h4>
+
+                <a href="@Url.Action("WarningFatalError","Error404")">Políticas y condiciones de uso </a>
+                <a href="@Url.Action("WarningFatalError","Error404")">Nosotros  </a>
+                <a href="@Url.Action("WarningFatalError","Error404")">¿Cómo comprar? </a>
+                <a href="@Url.Action("WarningFatalError","Error404")">Trabaja con nosotros </a>
+
+            </div>
+
+            <div class="encuentranos">
+                <h4>Encuentranos en</h4>
+
+
+                <img  align="left" Style="margin-top: 5px;"  src="~/Imagen/Icons/instagram.png" />
+                <a href="@Url.Action("WarningFatalError","Error404")" style="margin-left: 20px;">Instagram: Charming.store</a>
+
+                <img  align="left" Style="margin-top: 5px;"  src="~/Imagen/Icons/facebook.png" />
+                <a href="@Url.Action("WarningFatalError","Error404")"style="margin-left: 20px;">Facebook: Exclusive Charming.pe</a>
+
+                <img align="left" Style="margin-top: 16px; margin-right: 15px;"   src="~/Imagen/Icons/visa.png" />
+                <img   align="left" Style="margin-top: 16px; margin-right: 15px;"  src="~/Imagen/Icons/mastercard.png" />
+                <img   align="left" Style="margin-top: 16px; margin-right: 15px;"  src="~/Imagen/Icons/americanexpress.png" />
+                <img   align="left" Style="margin-top: 16px; margin-right: 15px;"  src="~/Imagen/Icons/paypal.png" />
+
+            </div>
+
+
+        </footer>
+
+        <script src="~/Scripts/menu.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    @*</form>*@
+
+</body>
+</html>

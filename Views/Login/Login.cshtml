@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    MVC_Charming.Models.Usuario usu = ViewBag.Usu;
+}
+
+
+<link href="~/Css/CssLogin.css" rel="stylesheet" />
+
+
+<div id="contenido">
+
+    <div class="Title">
+        <h1>INICIO DE SESION</h1>
+
+        <h4 class="alert-danger">@ViewBag.error</h4>
+        <h4 class="alert-success">@ViewBag.logeado</h4>
+    </div>
+
+    <form action="@Url.Action("Autenticacion","Login")" method="post">
+        <div id="Container-Login">
+            <p class="container-titulo"> Clientes registrados</p>
+            <hr class="hrarriba" />
+            <p class="inf">Si ya tienes una cuenta registrada, puedes iniciar sesion con tu direccion de correo electronico. </p>
+
+            <p class="texto">Correo Electronico: </p>
+            <input id="txtcorreo" name="correo" placeholder="Email.." class="TextBoxs" type="text" />
+
+
+            <p class="texto" style="margin-top: 15px;">Contrasena: </p>
+
+            <input id="txtpass" name="pass" type="password" placeholder="Contrasena..." class="TextBoxs" style="margin-top: 15px;" />
+
+            <input id="btnInicioSesion" type="submit" value="Iniciar Sesion" class="botonlogin" />
+            <a href="NotFound.aspx">Olvidaste tu contrasena?</a>
+            <hr class="hrabajo" />
+            <p class="container-titulos">Aun no tienes una cuenta?</p>
+            <p class="infoabajo">
+                Crerte una cuenta en Charming facilitara tu uso a la hora de comprar un producto,
+                paga tus pedidos online con Visa, Mastercard, American Express o Paypal, asi recibiras un correo de confirmacion
+                y de toda la informacion de sus pedidos.
+            </p>
+
+
+        </div>
+    </form>
+    <a class="botonlogins" href="~/Register/Register">
+        Registrate
+    </a>
+</div>
+
